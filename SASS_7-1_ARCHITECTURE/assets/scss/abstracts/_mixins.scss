@@ -1,0 +1,53 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+//Simple media query mixins
+@mixin above($width) {
+	@media (min-width: $width) {
+		@content;
+	}
+}
+
+@mixin below($width) {
+	@media (max-width: $width) {
+		@content;
+	}
+}
+
+@mixin between($min-width, $max-width) {
+	@media (min-width: $min-width) and (max-width: $max-width) {
+		@content;
+	}
+}
+
+// Calculating px to rem. Example of use => font-size: rem(16px); will be font-size: 1rem;
+@function rem($size) {
+    @return $size / 16px * 1rem;
+}
+
+// Flexbox Toolkit
+@mixin flex($justifyContent: null, $alignItems: null) {
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+}
+
+// Absolute position
+@mixin absolute-position($top: auto, $right: auto, $bottom: auto, $left: auto) {
+	bottom: $bottom;
+	left: $left;
+	position: absolute;
+	right: $right;
+	top: $top;
+}
+
+// Pseudo element
+/**
+ * When using ::before and ::after you'll always need these three, so we're saving three lines of code every time you use this.
+*/
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
